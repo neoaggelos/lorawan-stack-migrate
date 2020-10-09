@@ -1,4 +1,4 @@
-// Copyright © 2019 The Things Network Foundation, The Things Industries B.V.
+// Copyright © 2020 The Things Network Foundation, The Things Industries B.V.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import (
 	"go.thethings.network/lorawan-stack-migrate/pkg/version"
 )
 
-func print(k, v string) {
+func printVar(k, v string) {
 	fmt.Printf("%-20s %s\n", k+":", v)
 }
 
@@ -32,15 +32,15 @@ var (
 		Short: "Print version information",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("%s: %s\n", cmd.Root().Short, cmd.Root().Name())
-			print("Version", version.Version)
+			printVar("Version", version.Version)
 			if version.BuildDate != "" {
-				print("Build date", version.BuildDate)
+				printVar("Build date", version.BuildDate)
 			}
 			if version.GitCommit != "" {
-				print("Git commit", version.GitCommit)
+				printVar("Git commit", version.GitCommit)
 			}
-			print("Go version", runtime.Version())
-			print("OS/Arch", runtime.GOOS+"/"+runtime.GOARCH)
+			printVar("Go version", runtime.Version())
+			printVar("OS/Arch", runtime.GOOS+"/"+runtime.GOARCH)
 			return nil
 		},
 	}
