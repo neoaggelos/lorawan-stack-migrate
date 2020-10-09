@@ -30,3 +30,10 @@ go.binaries:
 
 go.test:
 	go test ./... -timeout=5m
+
+git.diff:
+	@if [[ ! -z "`git diff`" ]]; then \
+		echo "Previous operations have created changes that were not recorded in the repository. Please make those changes on your local machine before pushing them to the repository:"; \
+		git diff; \
+		exit 1; \
+	fi
